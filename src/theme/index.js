@@ -5,7 +5,7 @@ export default{
         GREE_100_ALPHA: '#E8FFAF',
 
         PETROL_BLUE: '#203A40',
-        
+
         GRAY_300: '#B3B3B3',
         GRAY_100: '#BCBCBC'
     },
@@ -16,7 +16,7 @@ export default{
     FONT_SIZE:{
         SM:14,
         MD:16,
-        LG:28,
-        XL:24
+        LG:24,
+        XL:28
     }
 }
