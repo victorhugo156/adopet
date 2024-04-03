@@ -1,10 +1,17 @@
 import React from "react";
 import{Text, View, Image, StyleSheet, TouchableOpacity} from 'react-native';
+import { useNavigation } from "@react-navigation/native";
 
 import { Container } from "../../style";
 
 
 export default function Home(){
+
+    const navigation = useNavigation();
+
+    function handleLogin(){
+        navigation.navigate('login')
+    }
     return(
         <View style={styles.container}>
             <View style={styles.containerContent}>
@@ -14,7 +21,7 @@ export default function Home(){
                 <Text style={styles.titleOne}>FIND YOUR BEST</Text>
                 <Text style={styles.titleTwo}>COMPANION WITH US</Text>
 
-                <TouchableOpacity style={styles.btn}>
+                <TouchableOpacity style={styles.btn} onPress={handleLogin}>
                     <Text style={styles.btnText}>LOGIN</Text>
                 </TouchableOpacity>
 

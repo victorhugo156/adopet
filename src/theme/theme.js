@@ -1,3 +1,7 @@
+
+/* Here I'm creating a theme for my project, 
+so I wont need to be adding either the color 
+code or the font style into my  donponents */
 export default{
     COLORS:{
         GREEN_300: '#AAFF00',
