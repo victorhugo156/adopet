@@ -1,7 +1,14 @@
 import React from "react";
 import { Text, View, Image, TextInput, StyleSheet, TouchableOpacity } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
 export default function Login() {
+
+    const navigation = useNavigation();
+
+    function handleAdoptionFeed(){
+        navigation.navigate('petsList')
+    }
     return (
         <View style={styles.container}>
             <View style={styles.containerContent}>
@@ -26,7 +33,7 @@ export default function Login() {
                     placeholderTextColor={'#BCBCBC'}
                     style={styles.input} />
                 </View>
-                <TouchableOpacity style={styles.btn}>
+                <TouchableOpacity style={styles.btn} onPress={handleAdoptionFeed}>
                         <Text style={styles.btnText}>LOGIN</Text>
                     </TouchableOpacity>
             </View>

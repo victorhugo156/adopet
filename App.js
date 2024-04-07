@@ -16,7 +16,10 @@ import { Routes } from './src/routes';
 
 export default function App() {
   return (
+
+    //Theme Provider will add the theme for all screens
     <ThemeProvider theme={theme}>
+      {/** Here I''m calling Routes wich has the Navigation Container and the Routes setted  */}
      <Routes />
     </ThemeProvider>
     

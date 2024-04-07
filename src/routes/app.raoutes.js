@@ -8,9 +8,12 @@ import PetList from "../screens/PetList";
 //Destructure the Stack Navigator so I can have access to the elements Navigator and Screen
 const { Navigator, Screen } = createNativeStackNavigator()
 
+//This Function is mapping all the screen where the routes needs to take it.
 export function AppRoutes() {
     return (
-        <Navigator screenOptions={{ headerShown: false }}>
+        //Inside the "createNativeStackNavigator", there are lots of differntes elements to work on,
+        //that's why I have destructed the element above to have just access to the Navigator and Screen
+        <Navigator screenOptions={{ headerShown: false }} initialRouteName="home">
             <Screen
                 name="home"
                 component={Home}
