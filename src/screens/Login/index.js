@@ -19,7 +19,6 @@ export default function Login() {
                 <Text style={styles.title}>
                     Do you have an account?{"\n"}Login into your account: 
                 </Text>
-
                 <View style={styles.containerForm}>
                     <Text style={styles.label}>Email</Text>
                     <TextInput 
