@@ -16,31 +16,38 @@
 ## Project Description
 
 <p align="justify">
- Projeto em desenvolvimento para disciplina Instrumentação Biomédica II do curso de Engenharia Biomédica. O GlicoCare é um sistema de telemonitoramento domiciliar para a atenção especializada de pessoas acometidas por diabetes mellitus.
+ Adopet is an application that has been created as a project for the Course Cross Platforma from AIT, Academy of Interactive Technology, that aim to stablish reliable connections between pets, people that wishes to adoptone and all organizations that works with animal cares and rescuing them from the abandons.
 
-O sistema permitirá o monitoramento diário, contínuo e remoto do nível de glicose no sangue (glicemia), possibilitando que familiares, cuidadores, profissionais da saúde ou o próprio paciente acompanhem o estado clínico do mesmo.
+The application provides a space where pets, in poor living condition or pets that does not have a home can be listed in order to find someone to adopt them.
+
+Adopet works as a social platform where the user will have to fill up a form with your personal information to gain access to the platform. As soon as the user got access, it will be able to see an Adoption Feed listing all the pets available for adoption with their information such as, behaviours, breed, where you can find them and the contact for adoption. 
+
+If the user wishes to obtain more information about any pet, they can click on the pet name, it will open up the pet profile where the user will be able to get more information, see some pictures and send an email to the person in charge of the pet.
 
 
 > :construction: Project under construction :construction:
 
 # :hammer: Project Functionalities
 
-:heavy_check_mark: `Funcionalidade 1:` Realizar cadastro dos usuários, podendo ser paciente ou profissional de saúde.
+:heavy_check_mark: `Funcionalidade 1:` User Login & Register.
 
-:heavy_check_mark: `Funcionalidade 2:` Armazenar dados do usuário, como glicemia, atividade física, alimentação, medicação, administração de insulina e peso no banco de dados na Cloud Firestore.
+:heavy_check_mark: `Funcionalidade 2:` Saving data into Fire Base.
 
-:heavy_check_mark: `Funcionalidade 3:` Plotar gráfico com histórico dos níveis glicêmicos do paciente.
-
-:heavy_check_mark: `Funcionalidade 4:` Chat com entre o paciente e profissional da saúde.
+:heavy_check_mark: `Funcionalidade 3:` Sending Email.
 
 
-# 📁 Acesso ao projeto
+# 📁 How to access the project?
 
-**Indique como é possível baixar ou acessar o código fonte do projeto, seja projeto inicial ou final**
+**You can have acces to the source code of the project or Download it**
 
-# 🛠️ Abrir e rodar o projeto
+# 🛠️ Open up the project
 
-**Apresente as instruções necessárias para abrir e executar o projeto**
+**After download the project into your machine
+- Open up VS Code
+- Create a New Terminal
+- Run the comand npm install
+- Run the command npm start
+**
 
 ## ✔️ Técnicas e tecnologias utilizadas
 - ``HTML``
