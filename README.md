@@ -43,9 +43,9 @@ O sistema permitirá o monitoramento diário, contínuo e remoto do nível de gl
 **Apresente as instruções necessárias para abrir e executar o projeto**
 
 ## ✔️ Técnicas e tecnologias utilizadas
-- ``Java 8``
-- ``InteliJ IDEA``
-- ``Paradigma de orientação a objetos``
+- ``HTML``
+- ``CSS``
+- ``React JS``
 
 >
 > 
