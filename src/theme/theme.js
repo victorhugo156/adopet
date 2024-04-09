@@ -2,7 +2,7 @@
 /* Here I'm creating a theme for my project, 
 so I wont need to be adding either the color 
 code or the font style into my  donponents */
-export default{
+const theme={
     COLORS:{
         GREEN_300: '#AAFF00',
         GREEN_500: '#72A603',
@@ -15,7 +15,7 @@ export default{
     },
     FONT_FAMILY:{
         REGULAR: 'Poppins_400Regular',
-        SEMIBOLD: 'Poppins_600Semibold',
+        BOLD: 'Poppins_700Bold',
     },
     FONT_SIZE:{
         SM:14,
@@ -24,3 +24,5 @@ export default{
         XL:28
     }
 }
+
+export default theme

@@ -2,7 +2,7 @@ import React from "react";
 import{Text, View, Image, StyleSheet, TouchableOpacity} from 'react-native';
 import { useNavigation } from "@react-navigation/native";
 
-import { Container } from "../../style";
+import { Container, ContainerContent, Btn, BtnText, BtnTextBG } from "../../style";
 
 
 export default function Home(){
@@ -13,49 +13,33 @@ export default function Home(){
         navigation.navigate('login')
     }
     return(
-        <View style={styles.container}>
-            <View style={styles.containerContent}>
+        <Container>
+            <ContainerContent>
                 <Image source={require('../../assets/logo_dark_blue.png')} 
                 style={styles.logo}></Image>
 
                 <Text style={styles.titleOne}>FIND YOUR BEST</Text>
                 <Text style={styles.titleTwo}>COMPANION WITH US</Text>
 
-                <TouchableOpacity style={styles.btn} onPress={handleLogin}>
-                    <Text style={styles.btnText}>LOGIN</Text>
-                </TouchableOpacity>
+                <Btn onPress={handleLogin}>
+                    <BtnTextBG>LOGIN</BtnTextBG>
+                </Btn>
 
-                <TouchableOpacity style={styles.btn}>
-                    <Text style={styles.btnText}>SIGN UP</Text>
-                </TouchableOpacity>
+                <Btn backgroundColor='transparent'>
+                    <BtnText>SIGN UP</BtnText>
+                </Btn>
 
                 <Image source={require('../../assets/img_girl_pet.png')}>
 
                 </Image>
-            </View>
+            </ContainerContent>
             
-        </View>
+        </Container>
 
     )
 }
 
 const styles = StyleSheet.create({
-    container:{
-        backgroundColor:'#AAFF00',
-        flex: 1
-    },
-
-    containerContent:{
-        width: "100%",
-
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-
-        marginTop: 128,
-        paddingLeft:112,
-        paddingRight:112
-    },
 
     logo:{
         marginBottom: 35,
@@ -83,26 +67,6 @@ const styles = StyleSheet.create({
 
         marginBottom: 45
     },
-
-    btn:{
-        backgroundColor:'#72A603',
-        width:180,
-        height:40,
-
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-
-        borderRadius: 8,
-
-        marginBottom: 10
-    },
-    btnText:{
-        fontSize: 16,
-        fontWeight: 'bold',
-
-        color: 'white'
-    }
 
 
 })
