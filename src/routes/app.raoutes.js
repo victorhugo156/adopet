@@ -4,6 +4,7 @@ import Home from "../screens/Home";
 import Login from "../screens/Login";
 import SignUp from "../screens/SignUp";
 import PetList from "../screens/PetList";
+import ProfilePet from "../screens/ProfilePet";
 
 //Destructure the Stack Navigator so I can have access to the elements Navigator and Screen
 const { Navigator, Screen } = createNativeStackNavigator()
@@ -32,6 +33,12 @@ export function AppRoutes() {
             <Screen
                 name="petsList"
                 component={PetList}
+            />
+
+            <Screen
+            name='profilePet'
+            component={ProfilePet}
+            
             />
         </Navigator>
     )

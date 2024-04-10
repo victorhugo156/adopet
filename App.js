@@ -21,6 +21,7 @@ import Home from './src/screens/Home';
 import Login from './src/screens/Login';
 import SignUp from './src/screens/SignUp';
 import PetList from './src/screens/PetList';
+import ProfilePet from './src/screens/ProfilePet';
 
 import { Routes } from './src/routes';
 import { Loading } from './src/components/Loading';

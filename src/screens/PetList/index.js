@@ -1,23 +1,33 @@
 import React from "react";
-import { Text, Image, View, FlatList, StyleSheet } from "react-native";
+import { Text, Image, View, FlatList, StyleSheet, TouchableOpacity } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
 import pets from "../../Pets/pets";
 import Card from "./Card";
 
 export default function () {
+
+    const navigation = useNavigation();
+
+    function handleProfilePet(){
+        navigation.navigate('profilePet')
+    }
     return (
         <View style={styles.container}>
             <Image></Image>
             <View style={styles.containerContent}>
                 <Text style={styles.title}>Hi...take a look at some friends{"\n"} waiting for adoption!</Text>
-                <FlatList
-                    data={pets}
-                    keyExtractor={item => item.name}
-                    renderItem={({ item }) => (
-                        <Card {...item}
-                        />
-                    )}
-                />
+                <TouchableOpacity onPress={handleProfilePet}>
+                    <FlatList
+                        data={pets}
+                        keyExtractor={item => item.name}
+                        renderItem={({ item }) => (
+                            <Card {...item}
+                            />
+                        )}
+                    />
+                </TouchableOpacity>
+               
             </View>
 
         </View>
