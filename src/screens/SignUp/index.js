@@ -1,7 +1,30 @@
 import React from "react";
+import { useContext, useState } from "react";
+
 import { Text, View, Image, TextInput, StyleSheet, TouchableOpacity } from "react-native";
 
+import { AuthContext } from "../../contexts/auth";
+import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
+
 export default function SignUp() {
+    const auth = useContext( AuthContext )
+
+    const [email, onChangeEmail] = useState("");
+    const [name, onChangeName] = useState("");
+    const [password, onChangePassword] = useState("");
+
+    const createAccount = (email, password)=>{
+        createUserWithEmailAndPassword(auth, email, password)
+            .then((userCredential)=>{
+                console.log(userCredential.user)
+            })
+            .catch((error)=>{
+                console.log(error.code, error.message)
+            })
+    }
+
+
+    
     return (
         <View style={styles.container}>
             <View style={styles.containerContent}>
@@ -14,21 +37,27 @@ export default function SignUp() {
                     <TextInput 
                     placeholder='Type your name'
                     placeholderTextColor={'#BCBCBC'}
+                    onChangeText={onChangeName}
+                    value={name}
                     style={styles.input} />
 
                     <Text style={styles.label}>Email</Text>
                     <TextInput 
                     placeholder='Type your name' 
                     placeholderTextColor={'#BCBCBC'}
+                    onChangeText={onChangeEmail}
+                    value={email}
                     style={styles.input} />
 
                     <Text style={styles.label}>Password</Text>
                     <TextInput 
                     placeholder='Type your name'
                     placeholderTextColor={'#BCBCBC'}
+                    onChangeText={onChangePassword}
+                    value={password}
                     style={styles.input} />
                 </View>
-                <TouchableOpacity style={styles.btn}>
+                <TouchableOpacity style={styles.btn} onPress={()=>createAccount(email, password)}>
                         <Text style={styles.btnText}>LOGIN</Text>
                     </TouchableOpacity>
             </View>

@@ -12,6 +12,9 @@ export default function Home(){
     function handleLogin(){
         navigation.navigate('login')
     }
+    function handleDignUp(){
+        navigation.navigate('signUp')
+    }
     return(
         <Container>
             <ContainerContent>
@@ -25,7 +28,7 @@ export default function Home(){
                     <BtnTextBG>LOGIN</BtnTextBG>
                 </Btn>
 
-                <Btn backgroundColor='transparent'>
+                <Btn backgroundColor='transparent' onPress={handleDignUp}>
                     <BtnText>SIGN UP</BtnText>
                 </Btn>
 

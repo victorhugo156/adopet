@@ -1,7 +1,3 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import { ActivityIndicator } from 'react-native';
-
 /*
 Importing fonts from expo-google-fonts
 
@@ -15,6 +11,16 @@ import { useFonts, Poppins_400Regular, Poppins_700Bold } from '@expo-google-font
 import { ThemeProvider } from 'styled-components';
 //My Const Theme that I have created
 import theme from './src/theme/theme';
+
+//Importing Firebase stuff
+import { firebaseConfig } from './src/config/Config';
+import { initializeApp } from 'firebase/app';
+import { getAuth } from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
+
+import { AuthContext } from './src/contexts/auth';
+import { DBContext } from './src/contexts/Db';
+
 
 
 import Home from './src/screens/Home';
@@ -37,19 +43,28 @@ export default function App() {
   The state "fontsLoaded" will be watching if the fonts are loaded and 
   it will return true or false.
   */
-  const [ fontsLoaded ] = useFonts({Poppins_400Regular, Poppins_700Bold});
+  const [fontsLoaded] = useFonts({ Poppins_400Regular, Poppins_700Bold });
+
+  //I'm Initializing the Firebase
+  const FBapp = initializeApp(firebaseConfig);
+  const FBauth = getAuth(FBauth);
+  const FBdb = getFirestore(FBdb)
 
 
   return (
 
     //Theme Provider will add the theme for all screens
     <ThemeProvider theme={theme}>
-      {/** Here I''m calling Routes wich has the Navigation Container and the Routes setted  */}
+      <AuthContext.Provider value={FBauth}>
+        <DBContext.Provider value={FBdb}>
+          {/** Here I''m calling Routes wich has the Navigation Container and the Routes setted  */}
 
-      {/**Here I'm using the ternary condition to check if the fonts are loaded, 
+          {/**Here I'm using the ternary condition to check if the fonts are loaded, 
        * if it's true will open the app if it's false will show loading...  */}
-     {fontsLoaded ? <Routes /> : <Loading />}
+          {fontsLoaded ? <Routes /> : <Loading />}
+        </DBContext.Provider>
+      </AuthContext.Provider>
     </ThemeProvider>
-    
+
   );
 }
