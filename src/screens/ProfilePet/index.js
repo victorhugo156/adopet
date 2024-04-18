@@ -1,5 +1,4 @@
 import { View, StyleSheet, ImageBackground } from "react-native";
-import { Container, ContainerContent, Btn, BtnText, BtnTextBG } from "../../style";
 
 import ProfileCard from "./ProfileCard";
 

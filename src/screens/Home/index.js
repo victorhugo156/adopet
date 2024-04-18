@@ -1,11 +1,16 @@
 import React from "react";
 import{Text, View, Image, StyleSheet, TouchableOpacity} from 'react-native';
 import { useNavigation } from "@react-navigation/native";
-
+import { useContext } from "react";
 import { Container, ContainerContent, Btn, BtnText, BtnTextBG } from "../../style";
+
+import { onAuthStateChanged } from "firebase/auth";
+import { AuthContext } from "../../contexts/auth";
 
 
 export default function Home(){
+
+    const auth = useContext(AuthContext)
 
     const navigation = useNavigation();
 
@@ -15,6 +20,26 @@ export default function Home(){
     function handleDignUp(){
         navigation.navigate('signUp')
     }
+    function handleAdoptionFeed(){
+        navigation.navigate('petsList')
+    }
+
+    onAuthStateChanged(auth, (user) => {
+        if (user) {
+          // User is signed in, see docs for a list of available properties
+          // https://firebase.google.com/docs/reference/js/auth.user
+          handleAdoptionFeed()
+
+          const uid = user.uid;
+          // ...
+        } else {
+          return
+        }
+      });
+
+
+
+
     return(
         <Container>
             <ContainerContent>

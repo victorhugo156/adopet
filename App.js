@@ -62,6 +62,7 @@ export default function App() {
           {/**Here I'm using the ternary condition to check if the fonts are loaded, 
        * if it's true will open the app if it's false will show loading...  */}
           {fontsLoaded ? <Routes /> : <Loading />}
+
         </DBContext.Provider>
       </AuthContext.Provider>
     </ThemeProvider>

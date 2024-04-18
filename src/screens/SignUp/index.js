@@ -1,5 +1,6 @@
 import React from "react";
 import { useContext, useState } from "react";
+import { useNavigation } from "@react-navigation/native";
 
 import { Text, View, Image, TextInput, StyleSheet, TouchableOpacity } from "react-native";
 
@@ -7,6 +8,8 @@ import { AuthContext } from "../../contexts/auth";
 import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
 
 export default function SignUp() {
+
+    const navigation = useNavigation();
     const auth = useContext( AuthContext )
 
     const [email, onChangeEmail] = useState("");
@@ -17,10 +20,15 @@ export default function SignUp() {
         createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential)=>{
                 console.log(userCredential.user)
+                handleSendToFeed()
             })
             .catch((error)=>{
                 console.log(error.code, error.message)
             })
+    }
+
+    function handleSendToFeed(){
+        navigation.navigate('petsList')
     }
 
 
