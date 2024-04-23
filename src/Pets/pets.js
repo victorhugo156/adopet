@@ -27,9 +27,7 @@ const pets=[
         age: '1 years old',
         size: 'small',
         image: dunga
-    }
-    
-    
+    } 
 ]
 
 export default pets;

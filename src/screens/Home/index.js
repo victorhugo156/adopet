@@ -4,9 +4,9 @@ import { useNavigation } from "@react-navigation/native";
 import { useContext } from "react";
 import { Container, ContainerContent, Btn, BtnText, BtnTextBG } from "../../style";
 
+
 import { onAuthStateChanged } from "firebase/auth";
 import { AuthContext } from "../../contexts/auth";
-
 
 export default function Home(){
 

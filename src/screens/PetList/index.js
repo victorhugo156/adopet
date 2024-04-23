@@ -4,17 +4,56 @@ import { useNavigation } from "@react-navigation/native";
 
 import { signOut } from "firebase/auth";
 
-import { useContext } from "react";
+import { useContext, useState, useEffect } from "react";
 
-import pets from "../../Pets/pets";
+
+//import pets from "../../Pets/pets";
 import Card from "./Card";
 import { AuthContext } from "../../contexts/auth";
+import { DBContext } from "../../contexts/Db";
+import { StorageContext } from "../../contexts/Storage";
+import { getStorage, ref, getDownloadURL } from 'firebase/storage';
+import { collection, getDocs } from 'firebase/firestore';
 
 export default function () {
 
     const auth = useContext( AuthContext)
-
     const navigation = useNavigation();
+
+    const [pets, setPets] = useState([]);
+    const db = useContext(DBContext);
+    const storage = useContext(StorageContext)
+
+
+    useEffect(() => {
+        const fetchPets = async () => {
+          try {
+            const querySnapshot = await getDocs(collection(db, "petfeed"));
+      
+            const petDataWithImages = [];
+            for (const doc of querySnapshot.docs) {
+              const petData = doc.data();
+              const imageNames = petData.picture; // Array of image names
+              console.log(imageNames)
+      
+              const imageUrls = [];
+              for (const imageName of imageNames) {
+                const imageRef = ref(storage, `pets/${imageName}`);
+                const imageUrl = await getDownloadURL(imageRef);
+                imageUrls.push(imageUrl); 
+              }
+      
+              petDataWithImages.push({ id: doc.id, ...petData, images: imageUrls }); // Array of image URLs for each pet
+            }
+      
+            setPets(petDataWithImages);
+          } catch (error) {
+            console.error("Error fetching pets:", error);
+          }
+        };
+      
+        fetchPets();
+      }, []);
 
    const signUserOut = ()=>{
     signOut(auth).then(() => {

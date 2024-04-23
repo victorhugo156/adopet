@@ -1,3 +1,5 @@
+import firebase from "firebase/compat/app";
+
 export const firebaseConfig = {
     apiKey: "AIzaSyCmhJkrLuURm_XzWslMisZPQIvQYCWy_Co",
     authDomain: "adopet-379b5.firebaseapp.com",

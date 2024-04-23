@@ -6,7 +6,7 @@ export default function ProfileCard(){
     return(
         <View style={styles.wrapContent} >
             <View style={styles.wrapImage}>
-                <Image source={require('../../../../src/assets/Dunga.png')} />
+               <Image source={require('../../../../src/assets/Dunga.png')} />
             </View>
            
             <View>

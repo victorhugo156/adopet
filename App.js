@@ -17,9 +17,12 @@ import { firebaseConfig } from './src/config/Config';
 import { initializeApp } from 'firebase/app';
 import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
+import { getStorage } from 'firebase/storage';
 
 import { AuthContext } from './src/contexts/auth';
 import { DBContext } from './src/contexts/Db';
+import { StorageContext } from './src/contexts/Storage';
+
 
 
 
@@ -49,6 +52,7 @@ export default function App() {
   const FBapp = initializeApp(firebaseConfig);
   const FBauth = getAuth(FBauth);
   const FBdb = getFirestore(FBdb)
+  const FBstorage = getStorage(FBapp)
 
 
   return (
@@ -57,12 +61,14 @@ export default function App() {
     <ThemeProvider theme={theme}>
       <AuthContext.Provider value={FBauth}>
         <DBContext.Provider value={FBdb}>
-          {/** Here I''m calling Routes wich has the Navigation Container and the Routes setted  */}
+          <StorageContext.Provider value={FBstorage}>
+            {/** Here I''m calling Routes wich has the Navigation Container and the Routes setted  */}
 
-          {/**Here I'm using the ternary condition to check if the fonts are loaded, 
+            {/**Here I'm using the ternary condition to check if the fonts are loaded, 
        * if it's true will open the app if it's false will show loading...  */}
-          {fontsLoaded ? <Routes /> : <Loading />}
+            {fontsLoaded ? <Routes /> : <Loading />}
 
+          </StorageContext.Provider>
         </DBContext.Provider>
       </AuthContext.Provider>
     </ThemeProvider>

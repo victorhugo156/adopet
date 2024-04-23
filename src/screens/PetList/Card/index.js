@@ -1,11 +1,16 @@
 import React from "react";
-import{Text, View, Image, StyleSheet} from 'react-native';
+import{Text, View, StyleSheet} from 'react-native';
+import { Image } from 'expo-image';
 
-export default function Card({name , age, size, image}){
+
+export default function Card({name , age, size, images}){
+
+    const firstImage = images && images.length > 0 ? images[0] : null;
+    console.log(firstImage)
     return(
         <View style ={styles.container}>
 
-            <Image source={image} style={styles.dogImg}></Image>
+            <Image source={{ uri: firstImage }} style={styles.dogImg}></Image>
             
             <View style={styles.containerLabels}>
                 <Text style={styles.labelNameTitle}>{name}</Text>
