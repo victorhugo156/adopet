@@ -67,7 +67,7 @@ export default function SignUp() {
                 </View>
                 <TouchableOpacity style={styles.btn} onPress={()=>createAccount(email, password)}>
                         <Text style={styles.btnText}>LOGIN</Text>
-                    </TouchableOpacity>
+                </TouchableOpacity>
             </View>
 
         </View>

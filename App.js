@@ -5,6 +5,7 @@ You need to install the fonts: npx expo install expo-font @expo-google-fonts/pop
 
 More Info check: https://docs.expo.dev/develop/user-interface/fonts/
 */
+import { AppRegistry } from 'react-native';
 import { useFonts, Poppins_400Regular, Poppins_700Bold } from '@expo-google-fonts/poppins';
 
 //Library Theme from React
@@ -51,8 +52,14 @@ export default function App() {
   //I'm Initializing the Firebase
   const FBapp = initializeApp(firebaseConfig);
   const FBauth = getAuth(FBauth);
-  const FBdb = getFirestore(FBdb)
+  const FBdb = getFirestore(FBapp)
   const FBstorage = getStorage(FBapp)
+
+    // Error logging during Firebase initialization
+    //console.log('Firebase app:', FBapp);
+    //console.log('Firebase auth:', FBauth);
+    console.log('Firebase firestore:', FBdb);
+    //console.log('Firebase storage:', FBstorage);
 
 
   return (

@@ -24,6 +24,8 @@ export default function () {
     const db = useContext(DBContext);
     const storage = useContext(StorageContext)
 
+    console.log("Now I'mm access the data base via PetList screen" + db)
+
 
     useEffect(() => {
         const fetchPets = async () => {
@@ -67,10 +69,14 @@ export default function () {
     function handleProfilePet(){
         navigation.navigate('profilePet')
     }
+    function handlePostPet(){
+        navigation.navigate('postPet')
+    }
 
     function sendUsertoLoginScreen(){
         navigation.navigate('home')
     }
+    
     return (
         <View style={styles.container}>
             <ImageBackground source={require('../../assets/bg_pattern.png')} 
@@ -79,9 +85,15 @@ export default function () {
                 height: 220,
                 resizeMode: 'cover'
             }}>
-                <TouchableOpacity onPress={signUserOut} >
-                    <Image style ={styles.icon} source={require('../../assets/logout_btn.png')} />
-                </TouchableOpacity>
+                <View style={styles.container_header}>
+                    <TouchableOpacity onPress={signUserOut} >
+                        <Image style={styles.icon} source={require('../../assets/logout_btn.png')} />
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={handlePostPet} >
+                        <Image style={styles.icon_paw} source={require('../../assets/btn_post_paw.png')} />
+                    </TouchableOpacity>
+                </View>
+                
                
             </ImageBackground>
 
@@ -121,6 +133,21 @@ const styles = StyleSheet.create({
         paddingRight:16
     },
 
+    container_header:{
+        marginTop: 35,
+        width: "100%",
+        height: 60,
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "space-between",
+
+        paddingTop: 20,
+        paddingRight: 20,
+        paddingLeft: 20,
+
+
+    },
+
     title:{
         fontSize: 24,
         fontWeight: 'bold',
@@ -133,10 +160,8 @@ const styles = StyleSheet.create({
     },
 
     icon:{
-        width: 20,
-        height: 20,
+        width: 30,
+        height: 30,
 
-        marginTop: 50,
-        marginLeft: 20
     }
 })
