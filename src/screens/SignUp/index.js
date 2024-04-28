@@ -5,27 +5,54 @@ import { useNavigation } from "@react-navigation/native";
 import { Text, View, Image, TextInput, StyleSheet, TouchableOpacity } from "react-native";
 
 import { AuthContext } from "../../contexts/auth";
+import { collection, addDoc } from 'firebase/firestore';
+import { DBContext } from "../../contexts/Db";
 import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
 
 export default function SignUp() {
 
     const navigation = useNavigation();
     const auth = useContext( AuthContext )
+    const db = useContext(DBContext);
 
-    const [email, onChangeEmail] = useState("");
-    const [name, onChangeName] = useState("");
-    const [password, onChangePassword] = useState("");
+    // const [email, onChangeEmail] = useState("");
+    // const [name, onChangeName] = useState("");
+    // const [password, onChangePassword] = useState("");
 
-    const createAccount = (email, password)=>{
-        createUserWithEmailAndPassword(auth, email, password)
-            .then((userCredential)=>{
-                console.log(userCredential.user)
-                handleSendToFeed()
-            })
-            .catch((error)=>{
-                console.log(error.code, error.message)
-            })
-    }
+
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [name, setName] = useState("");
+
+    const handleSignUp = async () => {
+        try {
+            const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+            const user = userCredential.user;
+
+            // Store user information in Firestore
+            await addDoc(collection(db, 'users'), {
+                userId: user.uid,
+                name: name,
+                email: email,
+            });
+
+            handleSendToFeed(); // Navigate to the petsList screen after signup
+        } catch (error) {
+            console.error("Error signing up:", error.message);
+        }
+    };
+
+
+    // const createAccount = (email, password)=>{
+    //     createUserWithEmailAndPassword(auth, email, password)
+    //         .then((userCredential)=>{
+    //             console.log(userCredential.user)
+    //             handleSendToFeed()
+    //         })
+    //         .catch((error)=>{
+    //             console.log(error.code, error.message)
+    //         })
+    // }
 
     function handleSendToFeed(){
         navigation.navigate('petsList')
@@ -45,7 +72,7 @@ export default function SignUp() {
                     <TextInput 
                     placeholder='Type your name'
                     placeholderTextColor={'#BCBCBC'}
-                    onChangeText={onChangeName}
+                    onChangeText={setName}
                     value={name}
                     style={styles.input} />
 
@@ -53,7 +80,7 @@ export default function SignUp() {
                     <TextInput 
                     placeholder='Type your name' 
                     placeholderTextColor={'#BCBCBC'}
-                    onChangeText={onChangeEmail}
+                    onChangeText={setEmail}
                     value={email}
                     style={styles.input} />
 
@@ -61,11 +88,11 @@ export default function SignUp() {
                     <TextInput 
                     placeholder='Type your name'
                     placeholderTextColor={'#BCBCBC'}
-                    onChangeText={onChangePassword}
+                    onChangeText={setPassword}
                     value={password}
                     style={styles.input} />
                 </View>
-                <TouchableOpacity style={styles.btn} onPress={()=>createAccount(email, password)}>
+                <TouchableOpacity style={styles.btn} onPress={handleSignUp}>
                         <Text style={styles.btnText}>LOGIN</Text>
                 </TouchableOpacity>
             </View>

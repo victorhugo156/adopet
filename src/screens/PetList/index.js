@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, ImageBackground, Image, View, FlatList, StyleSheet, TouchableOpacity } from "react-native";
+import { Text, ImageBackground, Image, View, FlatList, StyleSheet, TouchableOpacity, TouchableWithoutFeedback } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
 import { signOut } from "firebase/auth";
@@ -66,8 +66,8 @@ export default function () {
       });
 
    }
-    function handleProfilePet(){
-        navigation.navigate('profilePet')
+    function handleProfilePet(item){
+        navigation.navigate('profilePet', { petData: item, user: auth.currentUser})
     }
     function handlePostPet(){
         navigation.navigate('postPet')
@@ -99,16 +99,19 @@ export default function () {
 
             <View style={styles.containerContent}>
                 <Text style={styles.title}>Hi...take a look at some friends{"\n"} waiting for adoption!</Text>
-                <TouchableOpacity onPress={handleProfilePet}>
+               
                     <FlatList
+                    style={styles.list}
                         data={pets}
+                        scrollEnabled ={true}
+                        ListFooterComponent={<View style={{height: 200}}/>}
                         keyExtractor={item => item.name}
                         renderItem={({ item }) => (
-                            <Card {...item}
-                            />
+                            <TouchableOpacity onPress={() => handleProfilePet(item)}>
+                                <Card {...item} />
+                            </TouchableOpacity>
                         )}
                     />
-                </TouchableOpacity>
                
             </View>
 
@@ -133,6 +136,7 @@ const styles = StyleSheet.create({
         paddingRight:16
     },
 
+
     container_header:{
         marginTop: 35,
         width: "100%",
@@ -144,8 +148,6 @@ const styles = StyleSheet.create({
         paddingTop: 20,
         paddingRight: 20,
         paddingLeft: 20,
-
-
     },
 
     title:{

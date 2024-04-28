@@ -24,7 +24,7 @@ export default function Card({name , age, size, images}){
 const styles = StyleSheet.create({
 
     container:{
-        backgroundColor: '#F6F6F6',
+        backgroundColor: '#F2F2F2',
         width: 360,
         height: 204,
 
@@ -34,6 +34,12 @@ const styles = StyleSheet.create({
 
         paddingLeft: 25,
         paddingTop: 25,
+
+        marginBottom: 20,
+
+        shadowColor: 'black',
+        shadowOpacity: 1,
+        elevation: 5,
 
         borderRadius: 15
 
@@ -51,7 +57,7 @@ const styles = StyleSheet.create({
         fontSize: 24,
         fontWeight: 'bold',
 
-        color: '#AAFF00'
+        color: '#203A40',
     },
     labelName:{
         fontSize: 18,

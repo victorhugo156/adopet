@@ -1,30 +1,37 @@
 import { Text, View, Image, StyleSheet, TouchableOpacity, FlatList, Linking } from "react-native";
 import styled from "styled-components";
+import { useNavigation } from "@react-navigation/native";
 
 
-export default function ProfileCard(){
+export default function ProfileCard({name , age, size, images, location, behavior, petData, user }){
+
+    const navigation = useNavigation();
+
+    const handleSendMessage = () => {
+        navigation.navigate('message', { petData: petData, user: user });
+      };
+    
     return(
         <View style={styles.wrapContent} >
             <View style={styles.wrapImage}>
-               <Image source={require('../../../../src/assets/Dunga.png')} />
+               <Image source={{ uri: images[0]}} />
             </View>
            
             <View>
-                <Text style={styles.dogsName}>Dunga</Text>
+                <Text style={styles.dogsName}>{name}</Text>
             </View>
             <View style={styles.wrapInfo}>
-                <Text style={styles.infos}>2 years</Text>
-                <Text style={styles.infos}>Small</Text>
-                <Text style={styles.infos}>Calm and Polite</Text>
-                <Text style={styles.infos}>Play with kids and go for a walk</Text>
+                <Text style={styles.infos}>Age: {age}</Text>
+                <Text style={styles.infos}>Size: {size}</Text>
+                <Text style={styles.infos}>Behavour: {behavior}</Text>
                 <Image />
             </View>
             <View style={styles.wrapCTA}>
-                <Text style={styles.infos} >Marubra</Text>
+                <Text style={styles.infos} >Location: {location}</Text>
 
-                <TouchableOpacity style={styles.msg} onPress={()=>Linking.openURL('mailto:somethingemail@gmail.com?')}>
+                <TouchableOpacity style={styles.msg} onPress={handleSendMessage}>
                     <Image source={require('../../../assets/msgIcon.png')} />
-                    <Text style={styles.infos}>Send a Message</Text>
+                    <Text style={styles.infos}>Email</Text>
                 </TouchableOpacity>
 
             </View>
@@ -51,7 +58,7 @@ const styles = StyleSheet.create({
         fontSize: 26,
         fontWeight: "bold",
 
-        color: "#AAFF00",
+        color: '#203A40',
 
         marginBottom: 15
     },
